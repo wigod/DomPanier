@@ -9,22 +9,22 @@ addButton.addEventListener('click', addArticle);
 
 function increaseQuantity(){
     this.previousElementSibling.value = parseInt(this.previousElementSibling.value) + 1;    
-    subtotal();
+    subtotal(this);
 }
 
 function decreaseQuantity(){
-    if(document.querySelector('.qty').value > 0){
-        document.querySelector('.qty').value = parseInt(document.querySelector('.qty').value) - 1;
-        subtotal();
+    if(this.nextElementSibling.value > 0){
+        this.nextElementSibling.value = parseInt(this.nextElementSibling.value) - 1;        
+        subtotal(this);
     }    
 }
 
-function subtotal(){
-    let price = parseInt(document.querySelector('.price').innerText);
-    let qty = parseInt(document.querySelector('.qty').value);
+function subtotal(elt){
+    let price = parseInt(elt.parentElement.nextElementSibling.innerText);
+    let qty = parseInt(elt.previousElementSibling.value);
     let subt = price*qty;
 
-    document.querySelector('.subtotal').innerText = subt + ' fr';
+    elt.parentElement.nextElementSibling.nextElementSibling.innerText = subt + ' fr';
 }
 
 function addArticle(){
